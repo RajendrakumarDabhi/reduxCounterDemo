@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { AppColors } from '../constants/Colors';
+import { AppColors } from '../constants/AppColors';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../redux/reducer/notesSlice';
 

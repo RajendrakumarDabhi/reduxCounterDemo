@@ -1,7 +1,6 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { AppColors } from '../constants/Colors'
-
+import { AppColors } from '../constants/AppColors'
 function ListItem({ id, title, content, onClickedDelete }) {
 
   function onDelete() {
@@ -47,5 +46,11 @@ const styles = StyleSheet.create({
   deletebutton: {
     color: AppColors.primary,
     borderColor: AppColors.primary
-  }
+  }, 
+  image: {
+    width: 48,
+    height: 48,
+    resizeMode: 'contain',
+    marginBottom: 20,
+  },
 })
