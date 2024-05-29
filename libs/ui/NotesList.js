@@ -1,29 +1,41 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import ListItem from './ListItem'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeNote } from '../redux/reducer/notesSlice'
 const NotesList = () => {
+    var listNotes = useSelector((state) => state.notes.notes)
 
-    var listNotes = [
-        { id: 1, title: 'Note 1', content: 'This is note 1' },
-        { id: 2, title: 'Note 2', content: 'This is note 2' },
-        { id: 3, title: 'Note 3', content: 'This is note 3' },
-        { id: 4, title: 'Note 4', content: 'This is note 4' },
-    ]
+    var dispatch=useDispatch()
+    function onClickedDelete(id){
+        console.log("delete clicked", id)
+        dispatch(removeNote(id))
+    }
 
     function renderItem(item) {
         var data = item.item
-        const dataItem = { id: data.id, title: data.title, content: data.content }
+        const dataItem = { 
+            id: data.id,
+            title: data.title, 
+            content: data.content,
+            onClickedDelete
+         }
         return <ListItem {...dataItem} />
     }
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={listNotes}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-            >
-            </FlatList>
+            {listNotes ? (
+                <FlatList
+                    data={listNotes}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                />
+            ) : (
+                <Text style={styles.noNotes}>No Notes Found {listNotes.length}</Text>)
+            }
+
+
         </View>
     )
 }
@@ -33,5 +45,10 @@ export default NotesList
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    noNotes: {
+        fontSize: 14,
+        fontWeight: 'bold'
     }
+
 })

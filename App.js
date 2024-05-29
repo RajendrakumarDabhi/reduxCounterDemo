@@ -7,11 +7,14 @@ import AddNote from './libs/ui/AddNote';
 import { Button } from 'react-native-web';
 import Toolbar from './libs/ui/common/Toolbar';
 import Headerright from './libs/ui/common/Headerright';
+import { Provider } from 'react-redux';
+import store from './libs/redux/store';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="NotesList" component={NotesList}
@@ -25,6 +28,7 @@ export default function App() {
         <Stack.Screen name="AddNote" component={AddNote} />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 

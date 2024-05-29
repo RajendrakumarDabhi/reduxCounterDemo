@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { AppColors } from '../constants/Colors';
+import { useDispatch } from 'react-redux';
+import { addNote } from '../redux/reducer/notesSlice';
 
-const AddNote = () => {
+const AddNote = (navigation) => {
   const [title, settitle] = useState('');
   const [desc, setdesc] = useState('');
 
+  var dispatch = useDispatch()
+
   const handleSubmit = () => {
-    console.log('Submitted', `Input 1: ${title}\nInput 2: ${desc}`)
+    const data = {
+      id:Math.floor(Math.random() * 1000),
+      title: title,
+      content: desc
+    }
+    dispatch(addNote(data))
   };
 
   return (

@@ -1,12 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { AppColors } from '../constants/Colors'
 
-function ListItem({ title, content }) {
+function ListItem({ id, title, content, onClickedDelete }) {
+
+  function onDelete() {
+    onClickedDelete(id)
+  }
   return (
     <View style={styles.itemContainer}>
-      <Text style={styles.textTitle}>{title}</Text>
-      <Text style={styles.textdesc}>{content}</Text>
+      <View style={styles.itemrowContainer}>
+        <Text style={styles.textTitle}>{title}</Text>
+        <Text style={styles.textdesc}>{content}</Text>
+      </View>
+      <Button title='delete' style={styles.deletebutton} onPress={onDelete} color={AppColors.primary} />
     </View>
   )
 }
@@ -22,7 +29,12 @@ const styles = StyleSheet.create({
     elevation: 4,
     borderRadius: 8,
     backgroundColor: AppColors.background,
-    padding: 12
+    padding: 12,
+    flexDirection: 'row',
+    justifyContent:'space-between'
+  },
+  itemrowContainer: {
+    flexDirection: 'column'
   },
   textTitle: {
     fontSize: 16,
@@ -31,5 +43,9 @@ const styles = StyleSheet.create({
 
   textdesc: {
     fontSize: 14,
+  },
+  deletebutton: {
+    color: AppColors.primary,
+    borderColor: AppColors.primary
   }
 })
