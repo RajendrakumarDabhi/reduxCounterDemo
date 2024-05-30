@@ -9,6 +9,7 @@ import Toolbar from './libs/ui/common/Toolbar';
 import Headerright from './libs/ui/common/Headerright';
 import { Provider } from 'react-redux';
 import store from './libs/redux/store';
+import UserList from './libs/ui/userList';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -20,12 +21,17 @@ export default function App() {
         <Stack.Screen name="NotesList" component={NotesList}
           options={({ navigation }) => ({
             headerTitle: () => (<Toolbar title="Notes List" />),
-            headerRight: () => (<Headerright onClick={
-              () => navigation.navigate('AddNote')
-            } />),
+            headerRight: () => (
+            <Headerright onClick={
+              (name) => 
+                navigation.navigate(name)
+            }
+             />
+          ),
           })}
         />
         <Stack.Screen name="AddNote" component={AddNote} />
+        <Stack.Screen name="Userlist" component={UserList} />
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>

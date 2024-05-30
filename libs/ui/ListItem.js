@@ -12,7 +12,7 @@ function ListItem({ id, title, content, onClickedDelete }) {
         <Text style={styles.textTitle}>{title}</Text>
         <Text style={styles.textdesc}>{content}</Text>
       </View>
-      <Button title='delete' style={styles.deletebutton} onPress={onDelete} color={AppColors.primary} />
+      <Button title='delete' style={styles.deletebutton} onPress={onDelete} color={AppColors.red} />
     </View>
   )
 }
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   deletebutton: {
-    color: AppColors.primary,
+    color: AppColors.red,
     borderColor: AppColors.primary
   }, 
   image: {

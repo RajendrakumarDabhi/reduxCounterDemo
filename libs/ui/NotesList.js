@@ -25,14 +25,14 @@ const NotesList = () => {
 
     return (
         <View style={styles.container}>
-            {listNotes ? (
+            {listNotes.length>0 ? (
                 <FlatList
                     data={listNotes}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
                 />
             ) : (
-                <Text style={styles.noNotes}>No Notes Found {listNotes.length}</Text>)
+                <Text style={styles.noNotes}>No Notes Found ({listNotes.length})</Text>)
             }
 
 
@@ -47,8 +47,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     noNotes: {
+        flex:1,
+        marginStart:24,
         fontSize: 14,
-        fontWeight: 'bold'
+        width:'100%',
+        height:'100%',
+        fontWeight: 'bold',
+        justifyContent:'center',
+        alignItems:'center',
     }
 
 })
